@@ -6,7 +6,7 @@ char Symbol[SYMBOLMAX] = {'A', 'B', 'C', 'D', 'E', 'F'};
 int main() {
   srand(time(NULL));
   int length, width, nmbr_of_symbol, i, j, k, i1, i2, j1, j2, resultyes, resultno, score = 0, *pscore = NULL;
-  char answer[100], pseudo[100], line[100], savetest[100] = "sauvegarde.txt", **grid, **gridinter;
+  char answer[100], pseudo[100], line[100], savetest[100] = "save.txt", **grid, **gridinter;
   pscore = &score;
 
   // -- Intervention du joueur s'il veut recommencer une partie ou non
@@ -131,7 +131,7 @@ int main() {
     else {
       FILE *save = NULL;
       // -- Création du fichier
-      save = fopen("sauvegarde.txt", "w");
+      save = fopen("save.txt", "w");
       fprintf(save, "%s\n", pseudo);
       fprintf(save, "%d\n", score);
       fprintf(save, "%d %d %d\n", length, width, nmbr_of_symbol);
