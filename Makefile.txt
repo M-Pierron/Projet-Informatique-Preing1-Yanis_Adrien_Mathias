@@ -1,0 +1,10 @@
+# -- Toutes les cibles seront executées en même temps
+all: exec
+
+exec : *.c
+	gcc -c *.c -o exec
+
+# -- Supprime tous les fichiers objects
+clean:
+	rm -f *.o
+	rm exec
