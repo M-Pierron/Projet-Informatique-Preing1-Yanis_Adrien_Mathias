@@ -68,4 +68,3 @@ char **gravity(char **grid, int length, int width, int nmbr_of_symbol) {
   
   return grid;
 }
-
