@@ -60,10 +60,10 @@ int main() {
             sscanf(line, "%d %d %d", &length, &width, &nmbr_of_symbol);
 
             // -- Vérification de la réponse
-            if ((length <= 0) || (width <= 0) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX)) {
+            if ((length <= 4) || (width <= 4) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX)) {
                 printf("Les valeurs sont incorrectes, veuillez recommencer.\n");
             }
-        } while ((length <= 0) || (width <= 0) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX));
+        } while ((length <= 4) || (width <= 4) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX));
 
         // -- Initialisation de la grille et sa construction
         grid = malloc(width * sizeof(char *));
