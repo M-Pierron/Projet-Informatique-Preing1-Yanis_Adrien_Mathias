@@ -10,6 +10,7 @@
 
 #define SYMBOLMIN 4
 #define SYMBOLMAX 6
+#define LENGHT 100
 extern char Symbol[SYMBOLMAX];
 
 // -- Mouvements
