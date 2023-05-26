@@ -175,3 +175,4 @@ char **clearsymbol(char **grid, int length, int width,int *pscore) {
 
   return grid;
 }
+
