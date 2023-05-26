@@ -41,20 +41,29 @@ int main() {
     }
     else {
         remove(savetest);
+      do {
         printf("Veuillez rentrer votre pseudo : ");
         fgets(pseudo, sizeof(pseudo), stdin);
         pseudo[strcspn(pseudo, "\n")] = '\0';
+
+        // -- Vérification de la réponse
+        if (strlen(pseudo) == 0) {
+          printf("Les valeurs sont incorrectes, veuillez recommencer.\n");
+        }
+        
+      } while (strlen(pseudo) == 0);
+      
         // -- Demande à l'utilisateur les paramètres du jeu
         do {
-            printf("Rentrez les dimensions de la grille (MxN) et le nombre de symbole (entre 4 et 6) : ");
+            printf("Rentrez les dimensions de la grille (5<= longueur <=50 et 5 <= largeur<= 25) et le nombre de symbole (entre 4 et 6) : ");
             fgets(line, sizeof(line), stdin);
             sscanf(line, "%d %d %d", &length, &width, &nmbr_of_symbol);
 
             // -- Vérification de la réponse
-            if ((length <= 4) || (width <= 4) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX)) {
+            if ((length <= 0) || (width <= 0) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX)) {
                 printf("Les valeurs sont incorrectes, veuillez recommencer.\n");
             }
-        } while ((length <= 4) || (width <= 4) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX));
+        } while ((length <= 0) || (width <= 0) || (length > 50) || (width > 25) || (nmbr_of_symbol < SYMBOLMIN) || (nmbr_of_symbol > SYMBOLMAX));
 
         // -- Initialisation de la grille et sa construction
         grid = malloc(width * sizeof(char *));
@@ -74,7 +83,7 @@ int main() {
 
 
   // -- Le lancement du jeu en lui-même
-  do {
+  while (check_possibility(grid, length, width) != 0) {
     system("clear");
     // -- Affichage de la grille avec la numerotation adequate
     ShowTab(grid, length, width);
@@ -140,7 +149,7 @@ int main() {
         printf("Partie enregistrée avec succès.\n");
         return 0;
     }
-} while (check_possibility(grid, length, width) != 0);
+  }
 
 remove(savetest);
 printf("Jeu terminé, voici les scores :\n");
