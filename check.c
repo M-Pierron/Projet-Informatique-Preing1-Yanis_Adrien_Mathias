@@ -156,3 +156,4 @@ int check_possibility(char **grid, int length, int width) {
   
   return 0;
 }
+ 
