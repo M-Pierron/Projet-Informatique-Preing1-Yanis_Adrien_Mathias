@@ -30,4 +30,4 @@ char **clearsymbol(char **grid, int length, int width,int *pscore);
 void showemoji(char **tab, int i , int j);
 void ShowTab(char **tab, int length, int width);
 
-#endif 
+#endif
