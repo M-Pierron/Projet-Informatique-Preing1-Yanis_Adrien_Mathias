@@ -61,6 +61,7 @@ int check_possibility(char **grid, int length, int width) {
     -----------------------------------------------------------------*/
   
   int i, j,k ,l; 
+  // -- Cas si symboles adjacents
   // -- Vérifie sur l'horizontale
   for (i = 0; i < width; i++) {
     for (j = 0; j < length - 1; j++) {
@@ -76,6 +77,8 @@ int check_possibility(char **grid, int length, int width) {
         }
         
       }
+
+  
       // -- Les bordures
       if (j == 0 && grid[i][length - 1] == grid[i][j]) {
         for (k = 0; k < width; k++) {
@@ -138,8 +141,104 @@ int check_possibility(char **grid, int length, int width) {
       }
       
       if (i == width - 1 && grid[0][j] == grid[i][j]) {
+        for (k = 0; k < width - 1; k++) {
+          for (l = 0; l < length ; l++) {
+            if ((k != i || k!= width - 1) && l != j && grid[k][l] == grid[i][j]){
+              return 1;
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+
+  // -- Cas si symboles non adjacents
+  // -- Horizontal
+  for (i = 0; i < width; i++) {
+    for (j = 1; j < length - 1; j++) {
+      if (grid[i][j-1] == grid[i][j + 1]) {
         for (k = 0; k < width; k++) {
           for (l = 0; l < length - 1; l++) {
+            if (k != i && (l != j-1 || l!= j+1) && grid[k][l] == grid[i][j-1]){
+              return 1;
+            }
+            
+          }
+          
+        }
+        
+      }
+
+  
+      // -- Les bordures
+      if (j == 1 && grid[i][length - 1] == grid[i][j]) {
+        for (k = 0; k < width; k++) {
+          for (l = 0; l < length - 1; l++) {
+            if (k != i && (l != j || l!= length - 1) && grid[k][l] == grid[i][j]){
+              return 1;
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      if (j == length - 2 && grid[i][0] == grid[i][j]) {
+        for (k = 0; k < width; k++) {
+          for (l = 0; l < length - 2; l++) {
+            if (k != i && (l != j || l != length - 2) && grid[k][l] == grid[i][j]){
+              return 1;
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+  }
+  
+  // -- Vérifie sur la verticale
+  for (j = 0; j < length; j++) {
+    for (i = 1; i < width - 1; i++) {
+      if (grid[i][j-1] == grid[i + 1][j]) {
+        for (k = 0; k < width - 1; k++) {
+          for (l = 0; l < length; l++) {
+            if ((k != i || k!= i+1) && l != j && grid[k][l] == grid[i][j-1]){
+              return 1;
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      // -- Les bordures
+      if (i == 1 && grid[width - 1][j] == grid[i][j]) {
+        for (k = 0; k < width - 1; k++) {
+          for (l = 0; l < length ; l++) {
+            if ((k != i || k!= width - 1) && l != j && grid[k][l] == grid[i][j]){
+              return 1;
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+      if (i == width - 2 && grid[0][j] == grid[i][j]) {
+        for (k = 0; k < width - 1; k++) {
+          for (l = 0; l < length; l++) {
             if ((k != i || k!= width - 1) && l != j && grid[k][l] == grid[i][j]){
               return 1;
             }
@@ -156,4 +255,3 @@ int check_possibility(char **grid, int length, int width) {
   
   return 0;
 }
- 
